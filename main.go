@@ -97,12 +97,8 @@ func validateFiletype(path string, allowedExtensions []string) error {
 func validatePixelCoords(img image.Image, x, y int) error {
 	bounds := img.Bounds()
 
-	if x < bounds.Min.X || x > bounds.Max.X {
-		return fmt.Errorf("x coordinate is out of image bounds")
-	}
-
-	if y < bounds.Min.Y || y > bounds.Max.Y {
-		return fmt.Errorf("y coordinate is out of image bounds")
+	if x < bounds.Min.X || x > bounds.Max.X || y < bounds.Min.Y || y > bounds.Max.Y {
+		return fmt.Errorf("coordinates are out of image bounds")
 	}
 
 	return nil
